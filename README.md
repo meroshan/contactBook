@@ -1,6 +1,9 @@
-ContactBook
-===========
+Contact Book application 
+========================
 
-A Symfony project.
+To run the application 
+--------------------
 
-Internship Project
+composer install
+php app/console propel:model:build
+php app/console server:start
