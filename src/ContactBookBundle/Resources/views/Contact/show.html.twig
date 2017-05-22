@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <title>ContactBook</title>
+    <link href="{{ asset('bundles/contactbook/vendor/bootstrap/css/bootstrap.css') }}" rel="stylesheet">
+   {#<link href="{{ asset('bundles/contactbook/css/show_detail.css') }}" rel="stylesheet"/>#}
+
+</head>
+<body>
+<div class="container">
+    <div class="row showdetail">
+        <div class="table-responsive" style="max-width: 600px;">
+            <table class="table table-hover" style="font-size:20px;">
+                <thead>
+                    <tr>
+                        <th>{{ contact.firstname }}   {{ contact.lastname }}</th>
+                    </tr>
+                </thead>
+
+                <tr>
+                    <td>Facebook ID:-</td>
+                    <td> {{ contact.facebookid }} </td>
+                </tr>
+                <tr>
+                    <td>Email ID:-</td>
+                    <td>{{ contact.email }} <td>
+                </tr>
+                <tr>
+                    <td>Gender:-</td>
+                    <td>
+                        {% if contact.gender==1 %}
+                            Male
+                        {% elseif contact.gender==0 %}
+                            Female
+                        {% endif %}
+
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td>Friend Since:-</td>
+                    <td>{{ contact.friendsince|date("Y/M/d/")}}</td>
+                </tr>
+                {% for address in contact.addresses %}
+                <tr>
+                    <td>Country:-</td>
+                    <td>{{ address.country }} </td>
+                </tr>
+                <tr>
+                    <td>District:-</td>
+                    <td>{{ address.district }} <td>
+                </tr>
+                <tr>
+                    <td>Village/City:-</td>
+                    <td>{{ address.villagecity }} </td>
+                </tr>
+                <tr>
+                    <td> Address Type:-</td>
+                    <td>{{ address.addresstype }} </td>
+
+                    {% endfor %}
+                </tr>
+
+                {% for phone in contact.phones %}
+                <tr>
+                    <td>{{ phone.phonetype }}:-</td>
+                    <td>{{ phone.phonenumber }}</td>
+                    {% endfor %}
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+
+

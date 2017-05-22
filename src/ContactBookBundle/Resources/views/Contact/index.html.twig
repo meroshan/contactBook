@@ -1,0 +1,92 @@
+{% trans_default_domain 'home' %}
+{% extends "ContactBookBundle::base.html.twig" %}
+
+{% block head_script %}
+
+    <script src="{{ asset('bundles/contactbook/js/jquery-1.12.3.min.js') }}" type="text/javascript" ></script>
+    <script src="{{ asset('bundles/contactbook/js/confirm.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('bundles/contactbook/js/flash.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('bundles/contactbook/vendor/bootstrap/js/bootstrap.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('bundles/contactbook/js/bootbox.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('bundles/contactbook/vendor/bootstrap/js/bootstrap.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('bundles/contactbook/js/modal.js') }}"></script>
+    <script src="{{ asset('bundles/contactbook/js/edit.js') }}"></script>
+    <script src="{{ asset('bundles/contactbook/js/search.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div  style="position: fixed;margin-top: 60px;max-width: 300px;">
+                <a href="{{ path('createcontact') }}" class="btn btn-primary" role="button">{{ 'Add New contact'|trans }}</a>
+                <br><br>
+                <input type = "text" id="search" class="form-control search" placeholder="search" ><br><br>
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        Recently added
+                    </div>
+                        <div class ="panel-body">
+                             {% for recent in recents %}
+                            <a href="{{ path('showcontact',{'id': recent.id})}}"  class="show" >
+                                {{ recent.firstName }}   {{ recent.lastname }}</a><br>
+                        {% endfor %}
+                        </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8" >
+                <div class="contacts">
+                    {% if contacts|length %}
+                        <div class="col-md-8" id="flash_msg" xmlns="http://www.w3.org/1999/html">
+                            {% if app.session.flashBag.has('success') %}
+                                <div class="alert alert-danger" style="margin-top:60px" >
+                                    {% for msg in app.session.flashBag.get('success') %}
+                                        {{ msg }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>{
+                        <div class="no_search_result alert alert-danger" style="display:none;position:relative;margin-top:60px">
+                                No Result Found.........
+                        </div>
+                        <div style="margin-top: 60px;margin-bottom: 60px;">
+                            {% for contact in contacts %}
+                                <div class="col-md-8 div_name"  name="{{ contact.firstname }} {{ contact.lastname }}">
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading">
+                                            <a href="{{ path('showcontact',{'id': contact.id})}}" class="btn btn-primary btn-md pull-right show">
+                                                see more
+                                            </a>
+                                            {{ contact.firstname }}
+                                            {{ contact.lastname }}
+                                            <a href="{{ path('edit_contact', {'id': contact.id})}}" class="btn btn-warning edit" role="button"><span class="glyphicon glyphicon-edit"></span></a>
+                                            <button data-href= "{{ path('deletecontact', {id: contact.id} ) }}"class="btn btn-danger delete" role="button" ><span class="glyphicon glyphicon-trash"></span></button>
+                                        </div>
+                                        <div class="panel-body">
+                                            Facebook ID :{{ contact.facebookid }}
+                                            <br>
+                                            Email ID:{{ contact.email }}
+                                            <br>
+                                            {% for address in contact.addresses %}
+                                                District: {{address.district }}
+                                                <br>
+                                            {% endfor %}
+                                            {% for phone in contact.phones %}
+                                                {{ phone.phonetype }}: {{ phone.phonenumber }}
+                                            {% endfor  %}
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <div class="alert alert-success col-md-4" style="margin-top:100px;">
+                            You have no contacts.
+                        </div>
+                    {% endif %}
+                </div>
+        </div>
+    </div>
+	</div>
+{% endblock %}

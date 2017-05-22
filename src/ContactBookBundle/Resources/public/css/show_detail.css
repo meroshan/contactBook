@@ -1,0 +1,13 @@
+.showdetail{
+    
+    border-radius: 15px;
+    margin-top: 30px;
+    border-bottom: groove;
+    border-color: #5e5e5e;
+    height: 500px;
+}
+thead{
+    font-style: italic;
+    color: #5e5e5e;
+    font-size: larger;
+}

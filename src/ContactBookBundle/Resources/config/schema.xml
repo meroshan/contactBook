@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database name="default"  namespace= "ContactBookBundle\Model" defaultIdMethod="native">
+    <table name="contact">
+        <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true" />
+        <column name="user_id" type="integer" required="true"  />
+        <column name="first_name" type="varchar" size="30" required="true"/>
+        <column name="last_name" type="varchar" size="30" />
+        <column name="gender" type="smallint" />
+        <column name="facebook_id" type="varchar" size="255" />
+        <column name="friend_since" type="date" />
+        <column name="email" type="varchar" size="50" required="false" />
+        <foreign-key foreignTable="fos_user">
+            <reference local="user_id" foreign="id" />
+        </foreign-key>
+    </table>
+    <table name="address">
+        <column name="id" type="integer" required="true" autoIncrement="true" primaryKey="true" />
+        <column name="contact_id" type="integer" />
+        <column name="country" type="varchar" size="25" />
+        <column name="district" type="varchar" size="25"  />
+        <column name="village_city" type="varchar" size="25" />
+        <column name="address_type" type="varchar" size="25" />
+        <foreign-key foreignTable="contact" onDelete="cascade">
+            <reference local="contact_id" foreign="id" />
+        </foreign-key>
+    </table>
+    <table name="phone">
+        <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true" />
+        <column name="contact_id" type="integer" />
+        <column name="phone_number" type="varchar"  />
+        <column name="phone_type" type="varchar" />
+        <foreign-key foreignTable="contact" onDelete="cascade">
+            <reference local="contact_id" foreign="id" />
+        </foreign-key>
+    </table>
+</database>

@@ -1,0 +1,7 @@
+contact:
+    firstName: FirstName
+    lastName: LastName
+    gender: Gender
+    facebookId: FacebookId
+    email: E-mail
+    save: Save

@@ -1,0 +1,6 @@
+address:
+    country: Country
+    district: District
+    villagecity: Village/City
+    addresstype: Address Type
+    save: Save

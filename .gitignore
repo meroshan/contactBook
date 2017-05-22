@@ -1,0 +1,24 @@
+/web/bundles/
+/app/bootstrap.php.cache
+/app/cache/*
+/app/config/parameters.yml
+/app/logs/*
+!app/cache/.gitkeep
+!app/logs/.gitkeep
+/app/phpunit.xml
+/build/
+/vendor/
+/bin/
+/composer.phar
+/**/om
+/**/map
+*~
+<<<<<<< HEAD
+
+=======
+<<<<<<< HEAD
+.idea
+=======
+.idea
+>>>>>>> 7bdb8c917312300afee4f206025d06839cdf168d
+>>>>>>> 61ea1ec578ac3d6cb3f3642df0723fc49cb144c0

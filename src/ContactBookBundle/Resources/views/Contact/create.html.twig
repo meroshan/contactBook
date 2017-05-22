@@ -1,0 +1,19 @@
+{% trans_default_domain 'home' %}
+{% extends "ContactBookBundle::base.html.twig" %}
+
+{% block content %}
+    <div class="col-md-8" style="margin: 70px;">
+        {% form_theme form 'bootstrap_3_layout.html.twig' %}
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                Add a New Contact
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    {{ form(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4"></div>
+{% endblock %}

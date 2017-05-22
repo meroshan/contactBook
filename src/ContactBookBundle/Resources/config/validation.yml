@@ -1,0 +1,26 @@
+ContactBookBundle\Model\Contact:
+    properties:
+        first_name:
+            - NotNull: ~
+            - NotBlank: ~
+        last_name:
+            - NotNull: ~
+            - NotBlank: ~
+
+ContactBookBundle\Model\Address:
+    properties:
+        country:
+            - NotNull: ~
+        district:
+            - NotNull: ~
+        village_city:
+            - NotNull: ~
+        address_type:
+            - NotNull: ~
+
+ContactBookBundle\Model\Phone:
+    properties:
+        phone_number:
+                - NotNull: ~
+                - Number: ~
+
